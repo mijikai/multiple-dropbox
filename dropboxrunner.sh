@@ -6,13 +6,17 @@
 #*******************************                                                                        
 # Multiple dropbox instances                                                                            
 #*******************************                                                                        
+                                                                                                        
+: ${XDG_CONFIG_HOME:="$HOME/.config"}
+dropbox_mul_config=dropboxes
+dboxes_dir_config="$XDG_CONFIG_HOME/$dropbox_mul_config"
 
-dropboxes=(.dropbox-personal .dropbox-work)                                                            
-
-for dropbox in ${dropboxes[@]}                                                                          
+mkdir -p "$dboxes_dir_config"
+touch -a "$dboxes_dir_config/dbox_location"
+cat "$dboxes_dir_config/dbox_location" | while read dropbox;
 do                                                                                                      
-    if ! [ -d $HOME/$dropbox ];then                                                                     
-        mkdir $HOME/$dropbox                                                                            
+    if ! [ -d "$dropbox" ];then                                                                     
+        mkdir "$dropbox"                                                                            
     fi                                                                                                  
-    HOME=$HOME/$dropbox/ /usr/bin/dropbox start -i                                                      
+    HOME="$dropbox/" dropboxd start -i
 done  
