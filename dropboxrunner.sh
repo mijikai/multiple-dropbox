@@ -19,5 +19,5 @@ do
         mkdir "$dropbox"
         ln -s "$HOME/.Xauthority" "$dropbox/.Xauthority"
     fi
-    HOME="$dropbox/" dropboxd start -i
+    HOME="$dropbox/" dropboxd start -i &> /dev/null &
 done
