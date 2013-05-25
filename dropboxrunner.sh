@@ -17,6 +17,7 @@ cat "$dboxes_dir_config/dbox_location" | while read dropbox;
 do                                                                                                      
     if ! [ -d "$dropbox" ];then                                                                     
         mkdir "$dropbox"                                                                            
+        ln -s "$HOME/.Xauthority" "$dropbox/.Xauthority"
     fi                                                                                                  
     HOME="$dropbox/" dropboxd start -i
 done  
