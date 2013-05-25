@@ -16,7 +16,7 @@ touch -a "$dboxes_dir_config/dbox_location"
 cat "$dboxes_dir_config/dbox_location" | while read dropbox;
 do
     if ! [ -d "$dropbox" ];then
-        mkdir "$dropbox"
+        mkdir -p "$dropbox"
         ln -s "$HOME/.gtkrc-2.0" "$dropbox/.gtkrc-2.0"
         ln -s "$HOME/.Xauthority" "$dropbox/.Xauthority"
     fi
